@@ -65,6 +65,7 @@
 
 from collections import defaultdict
 
+# Solution 1
 def sum_odd_and_even(num_arr):
     sum_odd = 0
     sum_even = 0
@@ -78,10 +79,12 @@ def sum_odd_and_even(num_arr):
     
     return [sum_even, sum_odd]
 
+# Solution 2
 def format_date(dateStr):
     date_arr = dateStr.split("/")[::-1]
     return "/".join(date_arr)
 
+# Solution 3
 def advanced_sort(arr):
     hashMap = defaultdict(list)
     res = []
@@ -96,26 +99,85 @@ def advanced_sort(arr):
     
     return res
 
-# Problem 4
-# Given a 3x3 matrix of a completed tic-tac-toe game, create a function that returns whether the game is a win for "X", "O", or a "Draw", 
-# where "X" and "O" represent themselves on the matrix, and "E" represents an empty spot.
+# Solution 4
+def tic_tac_toe(matArr):
 
-# Examples:
-# tic_tac_toe([
-#   ["X", "O", "X"],
-#   ["O", "X",  "O"],
-#   ["O", "X",  "X"]
-# ]) ➞ "X"
+    # Very bad code, I will be revamping this in the evening
 
-# tic_tac_toe([
-#   ["O", "O", "O"],
-#   ["O", "X", "X"],
-#   ["E", "X", "X"]
-# ]) ➞ "O"
+    # score_X = 0
+    # score_O = 0
 
-# tic_tac_toe([
-#   ["X", "X", "O"],
-#   ["O", "O", "X"],
-#   ["X", "X", "O"]
-# ]) ➞ "Draw"
+    def checkCol(matArr):
+        for col in range(3):
+            #print(f"Print col {col}")
+            score_X = 0
+            score_O = 0
+            for row in range(3):
+                if matArr[row][col] == "X":
+                    score_X += 1
+                elif matArr[row][col] == "O":
+                    score_O += 1
+                elif matArr[row][col] == "E" and score_X == 2:
+                    return "X"
+                elif matArr[row][col] == "E" and score_O == 2:
+                    return "O"
+                if score_X == 3:
+                    return "X"
+                elif score_O == 3:
+                    return "O"
+                elif score_O == score_X:
+                    return "Draw"
+    
+    def checkRow(matArr):
+        for row in range(3):
+            #print(f"Print row {row}")
+            score_X = 0
+            score_O = 0
+            for col in range(3):
+                if matArr[row][col] == "X":
+                    score_X += 1
+                elif matArr[row][col] == "O":
+                    score_O += 1
+                elif matArr[row][col] == "E" and score_X == 2:
+                    return "X"
+                elif matArr[row][col] == "E" and score_O == 2:
+                    return "O"
+                if score_X == 3:
+                    return "X"
+                elif score_O == 3:
+                    return "O"
+                elif score_O == score_X:
+                    return "Draw"
+    
+    def checkDiag(matArr):
+        score_X = 0
+        score_O = 0
+        for i in range(3):
+            if matArr[i][i] == "X":
+                score_X += 1
+                if score_X == 3:
+                    return "X"
+            elif matArr[i][i] == "O":
+                score_O += 1
+                if score_O == 3:
+                    return "O"
+            
+            else:
+                if score_X == 2:
+                    return "X"
+                elif score_O == 2:
+                    return "O"
 
+    def check_winner(results):
+        for result in results:
+            if result == "X" or result == "O":
+                return result
+        if all(result in ["Draw", None] for result in results):
+            return "Draw"
+        return None
+    
+    col_results = checkCol(matArr)
+    row_results = checkRow(matArr)
+    diag_results = checkDiag(matArr)
+    
+    return check_winner([col_results, row_results, diag_results])
