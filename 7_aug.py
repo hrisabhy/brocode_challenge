@@ -103,13 +103,8 @@ def advanced_sort(arr):
 def tic_tac_toe(matArr):
 
     # Very bad code, I will be revamping this in the evening
-
-    # score_X = 0
-    # score_O = 0
-
     def checkCol(matArr):
         for col in range(3):
-            #print(f"Print col {col}")
             score_X = 0
             score_O = 0
             for row in range(3):
@@ -130,7 +125,6 @@ def tic_tac_toe(matArr):
     
     def checkRow(matArr):
         for row in range(3):
-            #print(f"Print row {row}")
             score_X = 0
             score_O = 0
             for col in range(3):
@@ -181,3 +175,17 @@ def tic_tac_toe(matArr):
     diag_results = checkDiag(matArr)
     
     return check_winner([col_results, row_results, diag_results])
+
+# Solution 5
+def count(arr):
+    hashMap = {
+        1: [2, 3, 4, 5, 6],
+        0: [7, 8, 9],
+        -1: [10, "J", "Q", "K", "A"]
+    }
+    finalScore = 0
+    for selected_num in arr:
+        for score, numbers in hashMap.items():
+            if selected_num in numbers:
+                finalScore += score
+    return finalScore
