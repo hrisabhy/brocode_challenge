@@ -75,40 +75,40 @@
 
 # Solution 1
 
-# def fn(n):
-#     if n == 0:
-#         return []
-#     else:
-#         prev_set = fn(n - 1)
-#         return prev_set + [prev_set]
+def fn1(n):
+    if n == 0:
+        return []
+    else:
+        prev_set = fn1(n - 1)
+        return prev_set + [prev_set]
 
 # Solution 2
 
-# def remove_letters(arr, string):
-#     result = []
-#     for char in arr:
-#         if not (char in string):
-#             result.append(char)
-#     return result
+def remove_letters(arr, string):
+    result = []
+    for char in arr:
+        if not (char in string):
+            result.append(char)
+    return result
 
 # Solution 3
 
-# def fn(lst):
-#     if len(lst) == 1:
-#         return lst[0]
-#     else:
-#         max_of_rest = fn(lst[1:])
-#         return lst[0] if lst[0] > max_of_rest else max_of_rest
+def fn3(lst):
+    if len(lst) == 1:
+        return lst[0]
+    else:
+        max_of_rest = fn3(lst[1:])
+        return lst[0] if lst[0] > max_of_rest else max_of_rest
 
 # Solution 4:
 
-# def histogram(arr, char):
-#     final_str = ""
-#     for i in arr:
-#         final_str += char * i + "\n"
-#     return final_str
+def histogram(arr, char):
+    final_str = ""
+    for i in arr:
+        final_str += char * i + "\n"
+    return final_str
 
 # Solution 5:
 
-# def adds_n(n):
-#     return lambda x: x + n
+def adds_n(n):
+    return lambda x: x + n
